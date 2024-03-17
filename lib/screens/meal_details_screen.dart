@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 import '../models/meal.dart';
+import '../provider/favourite_flutter_provider.dart';
 
 class MealDetailScreen extends StatelessWidget {
   final Meal meals;
@@ -14,6 +17,23 @@ class MealDetailScreen extends StatelessWidget {
         title: Text(
           meals.title,
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<FavouriteMealClass>().addMealToFavourite(meals);
+              Fluttertoast.showToast(
+                msg: context.read<FavouriteMealClass>().toastMessage,
+              );
+            },
+            focusColor: const Color.fromARGB(230, 255, 193, 7),
+            color: const Color.fromARGB(230, 255, 193, 7),
+            icon: Icon(
+              context.watch<FavouriteMealClass>().getMealsList.contains(meals)
+                  ? Icons.star
+                  : Icons.star_outline,
+            ),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -27,6 +47,9 @@ class MealDetailScreen extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
             ),
+            SizedBox(
+              height: 10.sp,
+            ),
             dataWidget(
               "Ingredients",
               meals.ingredients,
@@ -35,6 +58,9 @@ class MealDetailScreen extends StatelessWidget {
             dataWidget(
               "Steps",
               meals.steps,
+            ),
+            SizedBox(
+              height: 30.sp,
             )
           ],
         ),
