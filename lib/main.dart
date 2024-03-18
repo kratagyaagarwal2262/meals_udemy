@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'provider/bottom_navigation_bar_provider.dart';
 import 'provider/favourite_flutter_provider.dart';
-import 'screens/categories.dart';
+import 'screens/home_screen.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
@@ -22,6 +23,9 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => FavouriteMealClass(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => BottomNavigationBarProvider(),
+        )
       ],
       child: const App(),
     ),
@@ -40,7 +44,7 @@ class App extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           theme: theme,
-          home: const Categories(),
+          home: Home(),
         );
       },
     );

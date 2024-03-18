@@ -5,13 +5,10 @@ class FavouriteMealClass extends ChangeNotifier {
   final List<Meal> favouriteMeals = [];
   String toastMessage = "";
 
-  List<Meal> get getMealsList {
-    return favouriteMeals;
-  }
+  List<Meal> get getMealsList => favouriteMeals;
 
-  String get getToastMessage {
-    return toastMessage;
-  }
+  String get getToastMessage => toastMessage;
+  
 
   void addMealToFavourite(Meal mealData) {
     if (favouriteMeals.contains(mealData)) {

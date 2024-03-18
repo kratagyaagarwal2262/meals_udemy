@@ -11,23 +11,20 @@ class MealsListScreen extends StatelessWidget {
   const MealsListScreen(
       {super.key, required this.meal, required this.category});
 
-  void _showCategory(BuildContext context, Meal meals) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (ctx) => MealDetailScreen(
-          meals: meals,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(category.title),
       ),
-      body: SingleChildScrollView(
+      body: mealCardList(meal: meal, context: context, id: category.id),
+    );
+  }
+}
+
+Widget mealCardList(
+    {required List<Meal> meal, required BuildContext context, String? id}) {
+  return SingleChildScrollView(
         child: Column(
           children: [
             ListView.builder(
@@ -35,12 +32,15 @@ class MealsListScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: meal.length,
               itemBuilder: (ctx, i) {
-                return meal[i].categories.contains(category.id)
+            return id == null || meal[i].categories.contains(id)
                     ? GestureDetector(
-                        onTap: () => _showCategory(
-                          context,
-                          meal[i],
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) => MealDetailScreen(
+                          meals: meal[i],
                         ),
+                      ),
+                    ),
                         child: MealCard(
                           meal: meal[i],
                         ),
@@ -49,8 +49,6 @@ class MealsListScreen extends StatelessWidget {
               },
             ),
           ],
-        ),
-      ),
-    );
-  }
+    ),
+  );
 }
