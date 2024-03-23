@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/bottom_navigation_bar_provider.dart';
 import '../screens/filters_screen.dart';
 
 class HomePageDrawer extends StatelessWidget {
@@ -24,8 +26,7 @@ class HomePageDrawer extends StatelessWidget {
               icon: Icons.restaurant,
             ),
             onTap: () {
-              // Update the state of the app
-              // Then close the drawer
+              context.read<BottomNavigationBarProvider>().setCurrentIndex(0);
               Navigator.pop(context);
             },
           ),
@@ -35,6 +36,7 @@ class HomePageDrawer extends StatelessWidget {
               icon: Icons.settings,
             ),
             onTap: () {
+              Navigator.pop(context);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (ctx) => const FiltersScreen(),
