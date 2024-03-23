@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'provider/bottom_navigation_bar_provider.dart';
 import 'provider/favourite_flutter_provider.dart';
+import 'provider/filter_provider.dart';
 import 'screens/home_screen.dart';
 
 final theme = ThemeData(
@@ -25,6 +26,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => BottomNavigationBarProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FilterProvider(),
         )
       ],
       child: const App(),
@@ -43,6 +47,7 @@ class App extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: theme,
           home: Home(),
         );

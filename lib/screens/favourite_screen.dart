@@ -13,13 +13,13 @@ class FavouriteScreen extends StatelessWidget {
     FavouriteMealClass watch = context.watch<FavouriteMealClass>();
     return Scaffold(
       body: watch.favouriteMeals.isEmpty
-          ? emptyFavourtie()
-          : mealCardList(meal: watch.favouriteMeals, context: context),
+          ? emptyfavourite()
+          : mealCardList(meals: watch.favouriteMeals, context: context),
     );
   }
 }
 
-Widget emptyFavourtie() {
+Widget emptyfavourite() {
   return Center(
     child: Column(
       children: [
