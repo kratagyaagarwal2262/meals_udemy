@@ -25,8 +25,8 @@ class MealDetailScreen extends StatelessWidget {
                 msg: context.read<FavouriteMealClass>().toastMessage,
               );
             },
-            focusColor: const Color.fromARGB(230, 255, 193, 7),
-            color: const Color.fromARGB(230, 255, 193, 7),
+            focusColor: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).colorScheme.secondary,
             icon: Icon(
               context.watch<FavouriteMealClass>().getMealsList.contains(meals)
                   ? Icons.star
@@ -53,11 +53,13 @@ class MealDetailScreen extends StatelessWidget {
             dataWidget(
               "Ingredients",
               meals.ingredients,
+              context
             ),
             SizedBox(height: 20.sp),
             dataWidget(
               "Steps",
               meals.steps,
+              context
             ),
             SizedBox(
               height: 30.sp,
@@ -69,7 +71,7 @@ class MealDetailScreen extends StatelessWidget {
   }
 }
 
-Widget dataWidget(String title, List<String> data) {
+Widget dataWidget(String title, List<String> data , BuildContext ctx) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
@@ -78,7 +80,7 @@ Widget dataWidget(String title, List<String> data) {
         style: TextStyle(
           fontSize: 21.sp,
           fontWeight: FontWeight.bold,
-          color: const Color.fromARGB(230, 255, 193, 7),
+          color: Theme.of(ctx).colorScheme.secondary,
         ),
       ),
       SizedBox(

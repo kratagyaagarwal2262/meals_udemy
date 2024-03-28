@@ -18,7 +18,7 @@ class HomePageDrawer extends StatelessWidget {
             decoration: const BoxDecoration(
               color: Color.fromARGB(252, 126, 62, 3),
             ),
-            child: menuDesign(),
+            child: menuDesign(context),
           ),
           ListTile(
             title: menuItem(
@@ -50,14 +50,14 @@ class HomePageDrawer extends StatelessWidget {
   }
 }
 
-Widget menuDesign() {
+Widget menuDesign(BuildContext context) {
   return SizedBox(
     width: 200.sp,
     child: Row(
       children: [
         Icon(
           Icons.fastfood_sharp,
-          color: const Color.fromARGB(239, 248, 188, 91),
+          color: Theme.of(context).colorScheme.secondary,
           size: 35.sp,
         ),
         SizedBox(
@@ -66,7 +66,7 @@ Widget menuDesign() {
         Text(
           "Cooking Up!",
           style: TextStyle(
-            color: const Color.fromARGB(239, 248, 188, 91),
+            color: Theme.of(context).colorScheme.secondary,
             fontSize: 21.sp,
           ),
         )

@@ -16,7 +16,7 @@ class StepWidget extends StatelessWidget {
           style: TextStyle(
             fontSize: 23.sp,
             fontWeight: FontWeight.bold,
-            color: const Color.fromARGB(239, 248, 188, 91),
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
         SizedBox(
